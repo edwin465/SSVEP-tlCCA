@@ -1,2 +1,50 @@
 # SSVEP-tlCCA
-Matlab code of our IEEE TASE paper "Wong, C. M., Wang, Z., Rosa, A. C., Chen, C. P., Jung, T. P., Hu, Y., &amp; Wan, F. (2021). Transferring subject-specific knowledge across stimulus frequencies in SSVEP-based BCIs. IEEE Transactions on Automation Science and Engineering, 18(2), 552-563."
+Matlab code of our IEEE TASE paper "Wong, C. M., Wang, Z., Rosa, A. C., Chen, C. P., Jung, T. P., Hu, Y., Wan, F. (2021). Transferring subject-specific knowledge across stimulus frequencies in SSVEP-based BCIs. IEEE Transactions on Automation Science and Engineering, 18(2), 552-563." 
+
+In this project, we aim to transfer the subject-specific knowledge, e.g., `spatial filter` and `SSVEP template`, over different neighboring frequencies for SSVEP recognition. Then the subject's  calibration data corresponding to the old visual stimulation scheme can be re-used for the new visual stimulation scheme. This means that the subject does not need to participate in a new calibration session while the stimulation frequencies are changed. 
+
+For example, in the old visual stimulation scheme, the stimulus frequencies are 8.0Hz, 8.4Hz, 8.8Hz, ..., 15.6Hz. In the new visual stimulation scheme, they are 8.2Hz, 8.6Hz, 9.0Hz, ..., 15.8Hz. Here we have two assumptions: 
+
+1) A subject's SSVEPs over different stimulus frequencies can be assigned a common spatial filter. 
+2) A subject's SSVEPs over different stimulus frequencies share a common impulse response. 
+
+The first assumption has been verified in many research studies, such as  
+*[1] Nakanishi, M., et al. (2017). Enhancing detection of SSVEPs for a high-speed brain speller using task-related component analysis. IEEE Transactions on Biomedical Engineering, 65(1), 104-112.*  
+*[2] Wong, C. M., et al. (2020). Learning across multi-stimulus enhances target recognition methods in SSVEP-based BCIs. Journal of neural engineering, 17(1), 016026.* .  
+In ideal case, **the spatial filter is frequency-non-specific and subject-specific**.
+
+
+The second assumption comes from the superposition theory as mentioned in *Capilla, A., et al. (2011). Steady-state visual evoked potentials can be explained by temporal superposition of transient event-related responses. PloS one, 6(1), e14543.*. The `SSVEP template` can be decomposed into two components: impulse response and periodic impulse. In ideal case, **the impulse response includes the subject-specific knowledge (e.g., the shape, the latency, and etc) and frequency-non-specific. The periodic impulse is frequency-specific and subject-non-specific**.
+
+In summary, the spatial filter and the impulse response are frequency-non-specific, which can be simply transferred across different frequencies. The idea of transferring the subject-specific knowledge across frequencies is, 
+
+1)The spatial filter and the impulse response learned from the old scheme can be directly applied for the new scheme. (The spatial filter for the old and new visual stimulation schemes are the same) 
+2)The new SSVEP template can be reconstructed using the impulse response and the new periodic impulse. The new period impulse can be artificially generated.
+
+Based on this idea, we develop a CCA-based algorithm to use the transferred knowledge, i.e., transferred spatial filter and transferred SSVEP template, for SSVEP recognition. We call this method, the transfer learning CCA (tlCCA).
+
+# Matlab code
+The matlab file `demo_ssvep_recognition_with_stimulus_transfer_20220622.m` provides a demo code of testing the tlCCA performance on three different datasets. The first two datasets are **benchmark dataset** and **BETA dataset**, which can be freely downloaded in http://bci.med.tsinghua.edu.cn/. The third dataset comes from the China BCI competition in 2019 (https://www.datafountain.cn/competitions/340, maybe it is not available for download now).  
+
+This demo also tests the recognition performance of the other algorithms, such as the extended CCA (eCCA), the ensemble task-related component analysis (eTRCA), the multi-stimulus eCCA, the multi-stimulus eTRCA, the task-discriminant component analysis (TDCA). For more details about them, please refer to [1-4].
+
+*[3] Chen, X., et al. (2015). High-speed spelling with a noninvasive brain–computer interface. Proceedings of the national academy of sciences, 112(44), E6058-E6067.*  
+*[4] Liu, B., et al. (2021). Improving the performance of individually calibrated ssvep-bci by task-discriminant component analysis. IEEE Transactions on Neural Systems and Rehabilitation Engineering, 29, 1998-2007.*  
+
+
+# Version 
+v1.0: (22 Jun 2022)  
+
+# Citation  
+If you use this code for a publication, please cite the following paper:
+
+@article{wong2021transferring,  
+  title={Transferring subject-specific knowledge across stimulus frequencies in SSVEP-based BCIs},  
+  author={Wong, Chi Man and Wang, Ze and Rosa, Agostinho C and Chen, CL Philip and Jung, Tzyy-Ping and Hu, Yong and Wan, Feng},  
+  journal={IEEE Transactions on Automation Science and Engineering},  
+  volume={18},  
+  number={2},  
+  pages={552--563},  
+  year={2021},  
+  publisher={IEEE}  
+}
