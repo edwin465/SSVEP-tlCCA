@@ -31,6 +31,19 @@ This demo also tests the recognition performance of the other algorithms, such a
 *[3] Chen, X., et al. (2015). High-speed spelling with a noninvasive brain–computer interface. Proceedings of the national academy of sciences, 112(44), E6058-E6067.*  
 *[4] Liu, B., et al. (2021). Improving the performance of individually calibrated ssvep-bci by task-discriminant component analysis. IEEE Transactions on Neural Systems and Rehabilitation Engineering, 29, 1998-2007.*  
 
+# Experiment study
+Parameter setting:  
+1) dataset_no=1; transfer_type=1; is_center_std=0; min_length=0.3; max_length=1.2; enable_bit=[1 1 1 1 1 1];  
+
+2) dataset_no=2; transfer_type=1; is_center_std=0; min_length=0.3; max_length=1.2; enable_bit=[1 1 1 1 1 1];  
+
+3) dataset_no=3; transfer_type=1; is_center_std=0; min_length=0.3; max_length=1.2; enable_bit=[1 1 1 1 1 1];  
+
+The parameter `transfer_type` is used to select what frequencies are considered as the source group. Now we only have two options:  
+1: Source group: 8.0, 8.4, 8.8, ..., 15.6 Hz, Target group: 8.2, 8.6, 9.0, ..., 15.8 Hz  
+2: Source group: 8.2, 8.6, 9.0, ..., 15.8 Hz, Target group: 8.0, 8.4, 8.8, ..., 15.6 Hz  
+
+The parameter `dataset_no` is used to select the dataset in the study.
 
 # Version 
 v1.0: (22 Jun 2022)  
