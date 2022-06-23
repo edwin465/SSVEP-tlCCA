@@ -36,7 +36,7 @@ Note that the CCA is `calibration-free algorithm`. The eCCA, the eTRCA, the ms-e
 
 
 # Experiment study
-## Key parameters  
+## Some parameters  
 The parameter `transfer_type` is used to select what frequencies are considered as the source group. Now we only have two options:  
 1: Source group: 8.0, 8.4, 8.8, ..., 15.6 Hz, Target group: 8.2, 8.6, 9.0, ..., 15.8 Hz  
 2: Source group: 8.2, 8.6, 9.0, ..., 15.8 Hz, Target group: 8.0, 8.4, 8.8, ..., 15.6 Hz  
@@ -52,6 +52,8 @@ enable_bit(4)=1: ms-eTRCA,
 enable_bit(2)=1 and enable_bit(4)=1: ms-eCCA+ms-eTRCA,   
 enable_bit(5)=1: TDCA,   
 enable_bit(6)=1: tlCCA-1, tlCCA-2.
+
+The parameters for the TDCA are consistent with the paper [4] (in benchmark dataset and BETA dataset). But I did not make sure that they are still optimal for this case (here only 20 stimulus frequencies are selected).  
 
 ## Testings
 ### 1) dataset_no=1; is_center_std=0; min_length=0.3; max_length=1.2; enable_bit=[1 1 1 1 1 1];  
@@ -74,7 +76,7 @@ When transfer_type=1, we have
 ![Result21](https://github.com/edwin465/SSVEP-tlCCA/blob/main/BETA_1.png)  
 
 When transfer_type=2, we have  
-
+![Result22](https://github.com/edwin465/SSVEP-tlCCA/blob/main/BETA_2.png)  
 
 The grand average of all the results are listed as below:  
 
@@ -99,7 +101,10 @@ The grand average of all the results are listed as below:
 |Avg.|	44.65% |	67.40%  |	73.43% |	62.61%   |	63.74%           |	75.33% |	65.35%  |	76.13%  |	72.89%  |  
 
 
+### Summary
+Apparently, the tlCCA-1 and tlCCA-2 can perform much better than the CCA. Then the tlCCA-1 can achieve the performance as similar as the ms-eCCA+ms-eTRCA in BETA dataset and BCI competition 2019 dataset. In benchmark dataset, the tlCCA-1 and tlCCA-2 can achieve the performance as similar as the eCCA, but performs a bit worse than the ms-eCCA+ms-eTRCA and the TDCA. However, the size of the calibration data in the above three datasets are different. The calibration data in benchmark dataset is the largest, and thus the ms-eCCA, the eTRCA, the ms-eTRCA, the ms-eCCA+ms-eTRCA, and the TDCA could achieve the better performance.  
 
+Roughly speaking, we think that the performance of the tlCCA-1 and tlCCA-2 is comparable to the calibration-based algorithms.
 
 
 # Version 
