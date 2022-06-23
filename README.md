@@ -45,15 +45,13 @@ The parameter `dataset_no` is used to select the dataset in the study.
 1: benchmark dataset, 2: BETA dataset, 3: BCI competiton 2019 dataset  
 
 The parameter `enable_bit` is used to select the recognition algorithm in the study.  
-enable_bit(1)=1: CCA,   
-enable_bit(2)=1: eCCA,   
-enable_bit(3)=1: ms-eCCA,   
-enable_bit(4)=1: eTRCA,   
-enable_bit(5)=1: ms-eTRCA,   
-enable_bit(6)=1: ms-eCCA+ms-eTRCA,   
-enable_bit(7)=1: TDCA,   
-enable_bit(8)=1: tlCCA-1,   
-enable_bit(9)=1: tlCCA-2.
+enable_bit(1)=1: CCA, eCCA,   
+enable_bit(2)=1: ms-eCCA,   
+enable_bit(3)=1: eTRCA,   
+enable_bit(4)=1: ms-eTRCA,   
+enable_bit(2)=1 and enable_bit(4)=1: ms-eCCA+ms-eTRCA,   
+enable_bit(5)=1: TDCA,   
+enable_bit(6)=1: tlCCA-1, tlCCA-2.
 
 ## Testings
 1) dataset_no=1; is_center_std=0; min_length=0.3; max_length=1.2; enable_bit=[1 1 1 1 1 1];  
