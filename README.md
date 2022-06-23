@@ -18,7 +18,7 @@ The second assumption comes from the superposition theory as mentioned in *Capil
 
 In summary, the spatial filter and the impulse response are frequency-non-specific, which can be simply transferred across different frequencies. The idea of transferring the subject-specific knowledge across frequencies is, 
 
-1)The spatial filter and the impulse response learned from the old scheme can be directly applied for the new scheme. (The spatial filter for the old and new visual stimulation schemes are the same) 
+1)The spatial filter and the impulse response learned from the old scheme can be directly applied for the new scheme. (The spatial filter for the old and new visual stimulation schemes are the same)  
 2)The new SSVEP template can be reconstructed using the impulse response and the new periodic impulse. The new period impulse can be artificially generated.
 
 Based on this idea, we develop a CCA-based algorithm to use the transferred knowledge, i.e., transferred spatial filter and transferred SSVEP template, for SSVEP recognition. We call this method, the transfer learning CCA (tlCCA).
@@ -31,19 +31,32 @@ This demo also tests the recognition performance of the other algorithms, such a
 *[3] Chen, X., et al. (2015). High-speed spelling with a noninvasive brain–computer interface. Proceedings of the national academy of sciences, 112(44), E6058-E6067.*  
 *[4] Liu, B., et al. (2021). Improving the performance of individually calibrated ssvep-bci by task-discriminant component analysis. IEEE Transactions on Neural Systems and Rehabilitation Engineering, 29, 1998-2007.*  
 
+Note that the CCA is `calibration-free algorithm`. The eCCA, the eTRCA, the ms-eCCA, the ms-eTRCA, the ms-eCCA+ms-eTRCA, and the TDCA are `calibration-based algorithms`. The tlCCA-1 and the tlCCA-2 are `re-calibration-free algorithms`. In most cases, the performance of the `calibration-based algorithm` is usually better than the `calibration-free algorithm` and the `re-calibration-free algorithm`.
+
 # Experiment study
-Parameter setting:  
-1) dataset_no=1; transfer_type=1; is_center_std=0; min_length=0.3; max_length=1.2; enable_bit=[1 1 1 1 1 1];  
-
-2) dataset_no=2; transfer_type=1; is_center_std=0; min_length=0.3; max_length=1.2; enable_bit=[1 1 1 1 1 1];  
-
-3) dataset_no=3; transfer_type=1; is_center_std=0; min_length=0.3; max_length=1.2; enable_bit=[1 1 1 1 1 1];  
-
+# Key parameters  
 The parameter `transfer_type` is used to select what frequencies are considered as the source group. Now we only have two options:  
 1: Source group: 8.0, 8.4, 8.8, ..., 15.6 Hz, Target group: 8.2, 8.6, 9.0, ..., 15.8 Hz  
 2: Source group: 8.2, 8.6, 9.0, ..., 15.8 Hz, Target group: 8.0, 8.4, 8.8, ..., 15.6 Hz  
 
 The parameter `dataset_no` is used to select the dataset in the study.
+1: benchmark dataset, 2: BETA dataset, 3: BCI competiton 2019 dataset  
+
+## Testings
+1) dataset_no=1; transfer_type=1; is_center_std=0; min_length=0.3; max_length=1.2; enable_bit=[1 1 1 1 1 1];  
+
+
+2) dataset_no=2; transfer_type=1; is_center_std=0; min_length=0.3; max_length=1.2; enable_bit=[1 1 1 1 1 1];  
+
+3) dataset_no=3; transfer_type=1; is_center_std=0; min_length=0.3; max_length=1.2; enable_bit=[1 1 1 1 1 1];  
+
+|  |CCA      |	eCCA   |	ms-eCCA |	eTRCA  |	ms-eTRCA |	ms-eCCA+ms-eTRCA |	TDCA   |	tlCCA_1 |	tlCCA_2 |  
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |  
+|Avg.|	44.65% |	67.40%  |	73.43% |	62.61%   |	63.74%           |	75.33% |	65.35%  |	76.13%  |	72.89%  |  
+
+
+
+
 
 # Version 
 v1.0: (22 Jun 2022)  
