@@ -32,6 +32,9 @@ This demo also tests the recognition performance of the other algorithms, such a
 
 Note that the CCA is `calibration-free algorithm`. The eCCA, the eTRCA, the ms-eCCA, the ms-eTRCA, the ms-eCCA+ms-eTRCA, and the TDCA are `calibration-based algorithms`. The tlCCA-1 and the tlCCA-2 are `re-calibration-free algorithms`. In most cases, the performance of the `calibration-based algorithm` is usually better than the `calibration-free algorithm` and the `re-calibration-free algorithm`.
 
+>Our IEEE TASE paper only tested the performance of the tlCCA-1 on the BCI competition 2019 dataset. The main difference between the tlCCA-1 and the tlCCA-2 is whether the CCA coefficient is included or not. So this github can provide the more general performance of the tlCCA.
+
+
 # Experiment study
 ## Key parameters  
 The parameter `transfer_type` is used to select what frequencies are considered as the source group. Now we only have two options:  
@@ -40,6 +43,17 @@ The parameter `transfer_type` is used to select what frequencies are considered 
 
 The parameter `dataset_no` is used to select the dataset in the study.  
 1: benchmark dataset, 2: BETA dataset, 3: BCI competiton 2019 dataset  
+
+The parameter `enable_bit` is used to select the recognition algorithm in the study.  
+enable_bit(1)=1: CCA,   
+enable_bit(2)=1: eCCA,   
+enable_bit(3)=1: ms-eCCA,   
+enable_bit(4)=1: eTRCA,   
+enable_bit(5)=1: ms-eTRCA,   
+enable_bit(6)=1: ms-eCCA+ms-eTRCA,   
+enable_bit(7)=1: TDCA,   
+enable_bit(8)=1: tlCCA-1,   
+enable_bit(9)=1: tlCCA-2.
 
 ## Testings
 1) dataset_no=1; is_center_std=0; min_length=0.3; max_length=1.2; enable_bit=[1 1 1 1 1 1];  
