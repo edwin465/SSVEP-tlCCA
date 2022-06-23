@@ -33,17 +33,19 @@ This demo also tests the recognition performance of the other algorithms, such a
 Note that the CCA is `calibration-free algorithm`. The eCCA, the eTRCA, the ms-eCCA, the ms-eTRCA, the ms-eCCA+ms-eTRCA, and the TDCA are `calibration-based algorithms`. The tlCCA-1 and the tlCCA-2 are `re-calibration-free algorithms`. In most cases, the performance of the `calibration-based algorithm` is usually better than the `calibration-free algorithm` and the `re-calibration-free algorithm`.
 
 # Experiment study
-# Key parameters  
+## Key parameters  
 The parameter `transfer_type` is used to select what frequencies are considered as the source group. Now we only have two options:  
 1: Source group: 8.0, 8.4, 8.8, ..., 15.6 Hz, Target group: 8.2, 8.6, 9.0, ..., 15.8 Hz  
 2: Source group: 8.2, 8.6, 9.0, ..., 15.8 Hz, Target group: 8.0, 8.4, 8.8, ..., 15.6 Hz  
 
-The parameter `dataset_no` is used to select the dataset in the study.
+The parameter `dataset_no` is used to select the dataset in the study.  
 1: benchmark dataset, 2: BETA dataset, 3: BCI competiton 2019 dataset  
 
 ## Testings
 1) dataset_no=1; is_center_std=0; min_length=0.3; max_length=1.2; enable_bit=[1 1 1 1 1 1];  
 
+When transfer_type=1, we have  
+![Result31](https://github.com/edwin465/SSVEP-tlCCA/blob/main/benchmark_1.png)  
 
 2) dataset_no=2; is_center_std=0; min_length=0.3; max_length=1.2; enable_bit=[1 1 1 1 1 1];  
 
