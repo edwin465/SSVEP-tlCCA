@@ -58,6 +58,14 @@ enable_bit(6)=1: tlCCA-1, tlCCA-2.
 
 When transfer_type=1, we have  
 
+When transfer_type=2, we have  
+
+The grand average of all the results are listed as below:  
+
+|  |CCA      |	eCCA   |	ms-eCCA |	eTRCA  |	ms-eTRCA |	ms-eCCA+ms-eTRCA |	TDCA   |	tlCCA_1 |	tlCCA_2 |  
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |  
+|Avg.|	56.61% |	86.60% |	90.48% |	90.05% |	90.15% |	92.26% |	90.95% |88.15% |	87.00% |  
+
 2) dataset_no=2; is_center_std=0; min_length=0.3; max_length=1.2; enable_bit=[1 1 1 1 1 1];  
 
 3) dataset_no=3; is_center_std=0; min_length=0.3; max_length=1.2; enable_bit=[1 1 1 1 1 1];  
