@@ -57,8 +57,10 @@ enable_bit(6)=1: tlCCA-1, tlCCA-2.
 1) dataset_no=1; is_center_std=0; min_length=0.3; max_length=1.2; enable_bit=[1 1 1 1 1 1];  
 
 When transfer_type=1, we have  
+![Result11](https://github.com/edwin465/SSVEP-tlCCA/blob/main/benchmark_1.png)  
 
 When transfer_type=2, we have  
+![Result12](https://github.com/edwin465/SSVEP-tlCCA/blob/main/benchmark_2.png)  
 
 The grand average of all the results are listed as below:  
 
