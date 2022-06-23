@@ -76,6 +76,14 @@ When transfer_type=1, we have
 When transfer_type=2, we have  
 
 
+The grand average of all the results are listed as below:  
+
+|  |CCA      |	eCCA   |	ms-eCCA |	eTRCA  |	ms-eTRCA |	ms-eCCA+ms-eTRCA |	TDCA   |	tlCCA_1 |	tlCCA_2 |  
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |  
+|Avg.|	51.35%|	74.54%|	79.71%	|73.93%|	74.75%|	81.63%|	75.74%|	81.97%|	79.93% |
+
+
+
 ### 3) dataset_no=3; is_center_std=0; min_length=0.3; max_length=1.2; enable_bit=[1 1 1 1 1 1];  
 
 When transfer_type=1, we have  
