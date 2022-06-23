@@ -1,10 +1,9 @@
 # SSVEP-tlCCA
 Matlab code of our IEEE TASE paper "Wong, C. M., Wang, Z., Rosa, A. C., Chen, C. P., Jung, T. P., Hu, Y., Wan, F. (2021). Transferring subject-specific knowledge across stimulus frequencies in SSVEP-based BCIs. IEEE Transactions on Automation Science and Engineering, 18(2), 552-563." 
 
-In this project, we aim to transfer the subject-specific knowledge, e.g., `spatial filter` and `SSVEP template`, over different neighboring frequencies for SSVEP recognition. Then the subject's  calibration data corresponding to the old visual stimulation scheme can be re-used for the new visual stimulation scheme. This means that the subject does not need to participate in a new calibration session while the stimulation frequencies are changed. 
+In this project, we aim to transfer the subject-specific knowledge, e.g., `spatial filter` and `SSVEP template`, over different neighboring frequencies for SSVEP recognition. Then the subject's  calibration data corresponding to the old visual stimulation scheme can be re-used for the new visual stimulation scheme. This means that the subject does not need to participate in a new calibration session while the stimulation frequencies are changed. For example, in the old visual stimulation scheme, the stimulus frequencies are 8.0Hz, 8.4Hz, 8.8Hz, ..., 15.6Hz. In the new visual stimulation scheme, they are 8.2Hz, 8.6Hz, 9.0Hz, ..., 15.8Hz. 
 
-For example, in the old visual stimulation scheme, the stimulus frequencies are 8.0Hz, 8.4Hz, 8.8Hz, ..., 15.6Hz. In the new visual stimulation scheme, they are 8.2Hz, 8.6Hz, 9.0Hz, ..., 15.8Hz. Here we have two assumptions: 
-
+In order to re-use the knowledge or data from the old visual stimulation scheme, here we have two assumptions: 
 1) A subject's SSVEPs over different stimulus frequencies can be assigned a common spatial filter. 
 2) A subject's SSVEPs over different stimulus frequencies share a common impulse response. 
 
