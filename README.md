@@ -54,7 +54,7 @@ enable_bit(5)=1: TDCA,
 enable_bit(6)=1: tlCCA-1, tlCCA-2.
 
 ## Testings
-1) dataset_no=1; is_center_std=0; min_length=0.3; max_length=1.2; enable_bit=[1 1 1 1 1 1];  
+### 1) dataset_no=1; is_center_std=0; min_length=0.3; max_length=1.2; enable_bit=[1 1 1 1 1 1];  
 
 When transfer_type=1, we have  
 ![Result11](https://github.com/edwin465/SSVEP-tlCCA/blob/main/benchmark_1.png)  
@@ -68,9 +68,15 @@ The grand average of all the results are listed as below:
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |  
 |Avg.|	56.61% |	86.60% |	90.48% |	90.05% |	90.15% |	92.26% |	90.95% |88.15% |	87.00% |  
 
-2) dataset_no=2; is_center_std=0; min_length=0.3; max_length=1.2; enable_bit=[1 1 1 1 1 1];  
+### 2) dataset_no=2; is_center_std=0; min_length=0.3; max_length=1.2; enable_bit=[1 1 1 1 1 1];  
 
-3) dataset_no=3; is_center_std=0; min_length=0.3; max_length=1.2; enable_bit=[1 1 1 1 1 1];  
+When transfer_type=1, we have  
+![Result21](https://github.com/edwin465/SSVEP-tlCCA/blob/main/BETA_1.png)  
+
+When transfer_type=2, we have  
+
+
+### 3) dataset_no=3; is_center_std=0; min_length=0.3; max_length=1.2; enable_bit=[1 1 1 1 1 1];  
 
 When transfer_type=1, we have  
 ![Result31](https://github.com/edwin465/SSVEP-tlCCA/blob/main/bci_competition_2019_1.png)  
