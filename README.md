@@ -42,12 +42,20 @@ The parameter `dataset_no` is used to select the dataset in the study.
 1: benchmark dataset, 2: BETA dataset, 3: BCI competiton 2019 dataset  
 
 ## Testings
-1) dataset_no=1; transfer_type=1; is_center_std=0; min_length=0.3; max_length=1.2; enable_bit=[1 1 1 1 1 1];  
+1) dataset_no=1; is_center_std=0; min_length=0.3; max_length=1.2; enable_bit=[1 1 1 1 1 1];  
 
 
-2) dataset_no=2; transfer_type=1; is_center_std=0; min_length=0.3; max_length=1.2; enable_bit=[1 1 1 1 1 1];  
+2) dataset_no=2; is_center_std=0; min_length=0.3; max_length=1.2; enable_bit=[1 1 1 1 1 1];  
 
-3) dataset_no=3; transfer_type=1; is_center_std=0; min_length=0.3; max_length=1.2; enable_bit=[1 1 1 1 1 1];  
+3) dataset_no=3; is_center_std=0; min_length=0.3; max_length=1.2; enable_bit=[1 1 1 1 1 1];  
+
+When transfer_type=1, we have  
+![Result31](https://github.com/edwin465/SSVEP-tlCCA/blob/main/bci_competition_2019_1.png)  
+
+When transfer_type=2, we have  
+![Result32](https://github.com/edwin465/SSVEP-tlCCA/blob/main/bci_competition_2019_2.png)
+
+The grand average of all the results are listed as below:  
 
 |  |CCA      |	eCCA   |	ms-eCCA |	eTRCA  |	ms-eTRCA |	ms-eCCA+ms-eTRCA |	TDCA   |	tlCCA_1 |	tlCCA_2 |  
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |  
