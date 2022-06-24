@@ -102,9 +102,9 @@ The grand average of all the results are listed as below:
 
 
 ### Summary
-Apparently, the tlCCA-1 and tlCCA-2 can perform much better than the CCA. Then the tlCCA-1 can achieve the performance as similar as the ms-eCCA+ms-eTRCA in BETA dataset and BCI competition 2019 dataset. In benchmark dataset, the tlCCA-1 and tlCCA-2 can achieve the performance as similar as the eCCA, but performs a bit worse than the ms-eCCA+ms-eTRCA and the TDCA. However, the size of the calibration data in the above three datasets are different. The calibration data in benchmark dataset is the largest, and thus the ms-eCCA, the eTRCA, the ms-eTRCA, the ms-eCCA+ms-eTRCA, and the TDCA could achieve the better performance.  
+Apparently, the tlCCA-1 and tlCCA-2 can perform much better than the CCA. Then the tlCCA-1 can achieve the performance as similar as the ms-eCCA+ms-eTRCA in BETA dataset and BCI competition 2019 dataset. In benchmark dataset, the tlCCA-1 and tlCCA-2 can achieve the performance as similar as the eCCA, but performs a bit worse than the ms-eCCA, the eTRCA, the ms-eTRCA, the ms-eCCA+ms-eTRCA, and the TDCA. However, the size of the calibration data in the above three datasets are different (Benchmark dataset: 5 blocks/frequency, BETA dataset: 3 blocks/frequency, and BCI competition dataset: 2 blocks/frequency).   
 
-Roughly speaking, we think that the performance of the tlCCA-1 and tlCCA-2 is comparable to the calibration-based algorithms.
+Roughly speaking, the performance of the tlCCA-1 and tlCCA-2 is comparable to the calibration-based algorithms when the calibration data is not large. When the calibration data is large enough, the ms-eCCA, the eTRCA, the ms-eTRCA, the ms-eCCA+ms-eTRCA, and the TDCA could achieve the better performance than the tlCCA-1 and tlCCA-2.  
 
 
 # Version 
