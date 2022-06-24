@@ -141,7 +141,7 @@ for sn=1:num_of_subj
         load([str_dir 'S' num2str(sn) '.mat']);
         eeg=data(ch_used,1:floor(latencyDelay)+2*Fs,:,:);
     end
-           
+    
     
     [d1_,d2_,d3_,d4_]=size(eeg);
     d1=d3_;d2=d4_;d3=d1_;d4=d2_;
@@ -149,11 +149,11 @@ for sn=1:num_of_subj
     n_ch=d3;
     % d1: num of stimuli
     % d2: num of trials
-    % d3: num of channels 
+    % d3: num of channels
     % d4: num of sampling points
     for i=1:1:d1
         for j=1:1:d2
-            y0=reshape(eeg(:,:,i,j),d3,d4);            
+            y0=reshape(eeg(:,:,i,j),d3,d4);
             y = filtfilt(notchB, notchA, y0.'); %notch
             y = y.';
             for sub_band=1:num_of_subbands
@@ -210,7 +210,7 @@ for sn=1:num_of_subj
             subband_signal(sub_band).templates_source = squeeze(mean(subband_signal(sub_band).SSVEPdata_source,3));
             
             % Find the transfered spatial filters
-            for stim_no=1:length(sti_f_source)               
+            for stim_no=1:length(sti_f_source)
                 d0=floor(num_of_signal_templates/2);
                 d1=length(sti_f_source);
                 if stim_no<=d0
@@ -243,23 +243,24 @@ for sn=1:num_of_subj
             end
             
             % Find the transfered spatial filters and transfered templates
-            for stim_no=1:length(sti_f_source)                               
+            for stim_no=1:length(sti_f_source)
+                % target frequency and phase
                 fs=sti_f_target(stim_no);
                 ph=pha_val_target(stim_no);
                 
                 y_tmp=[];
                 h_tmp=[];
-
-                    frequency_period=1.05*1/sti_f_source(stim_no);
-                    fs_0=sti_f_source(stim_no);
-                    ph_0=pha_val_source(stim_no);
-                    st=1;
-                    ssvep0=subband_signal(sub_band).templates_source(:,st:st+dataLength-1,stim_no);
-
-                    [H0,h0]=my_conv_H(fs_0,ph_0,Fs,dataLength/Fs,60,frequency_period);
-
-                        h_len=size(H0,1);
-
+                
+                frequency_period=1.05*1/sti_f_source(stim_no);
+                % source frequency and phase
+                fs_0=sti_f_source(stim_no);
+                ph_0=pha_val_source(stim_no);
+                st=1;
+                ssvep0=subband_signal(sub_band).templates_source(:,st:st+dataLength-1,stim_no);                
+                [H0,h0]=my_conv_H(fs_0,ph_0,Fs,dataLength/Fs,60,frequency_period);                
+                h_len=size(H0,1);
+                
+                % target frequency and phase
                 fs_target=sti_f_target(stim_no);
                 ph_target=pha_val_target(stim_no);
                 
@@ -284,21 +285,23 @@ for sn=1:num_of_subj
                 end
                 x_hat_=x_hat_new;
                 x_hat=x_hat_(1:h_len);
-
+                
+                % Reconstructed SSVEP
                 y_re=x_hat*H0;
                 y_=w0_new*ssvep0;
                 y_re(:,1:length(find(y_re==0)))=0.8*y_re(:,Fs+1:Fs+length(find(y_re==0)));
                 
-                r=corrcoef(y_,y_re);     % the similarity between the reconstructed and original ssvep                  
-                ycor(sn,stim_no)=abs(r(1,2)); 
+                r=corrcoef(y_,y_re);     % the similarity between the reconstructed and original ssvep
+                ycor(sn,stim_no)=abs(r(1,2));
                 
+                % Transferred spatial filter
                 subband_signal(sub_band).Wx_transfer(:,stim_no)=w0_new';
-                
-                
+                                
                 [H_target,h_target]=my_conv_H(fs_target,ph_target,Fs,dataLength/Fs,60,frequency_period);
                 
-                y_hat=x_hat*H_target;                
-                y_hat(1:length(find(y_hat==0)))=0.8*y_hat(Fs+1:Fs+length(find(y_hat==0)));                
+                y_hat=x_hat*H_target;
+                y_hat(1:length(find(y_hat==0)))=0.8*y_hat(Fs+1:Fs+length(find(y_hat==0)));
+                % Transferred SSVEP template
                 subband_signal(sub_band).templates_transfer(st:st+sig_len-1,stim_no)=y_hat(1:sig_len);
                 
                 clear H H_tr
@@ -307,19 +310,16 @@ for sn=1:num_of_subj
         end
         
         
-        % for training and testing stage
+        % Sine-cosine reference signal for training and testing stage
         for i = length(sti_f_target):-1:1
             
             testFres = sti_f_target(i) * (1:num_of_harmonics)';
             t = 0:1/Fs:1/Fs * (sig_len-1);
-           
+            
             ref_target{i} = [cos( 2 * pi * testFres * t +pha_val_target(i)* (1:num_of_harmonics)');...
                 sin( 2 * pi * testFres * t+pha_val_target(i)* (1:num_of_harmonics)')];
         end
-        
-        
-        
-        
+                
         seq_0=zeros(d2,num_of_trials);
         for run=1:d2
             %         % leave-one-run-out cross-validation
@@ -357,7 +357,7 @@ for sn=1:num_of_subj
             end
             
             % Training stage:
-            % For TDCA 
+            % For TDCA
             if enable_bit(5)==1
                 for sub_band=1:num_of_subbands
                     for j=1:no_of_class
@@ -448,14 +448,14 @@ for sn=1:num_of_subj
                         subband_signal(sub_band).Wy_mseCCA(:,j)=Wy1(:,1);
                     end
                 end
-            end                
+            end
             % for eTRCA
             if (enable_bit(3)==1)
                 
                 if (num_of_trials==1)
                     % num_of_trials cannot be less than 2
                     % in TRCA
-%                     TRCAR(sub_band,j)=0;
+                    %                     TRCAR(sub_band,j)=0;
                 else
                     for sub_band=1:num_of_subbands
                         Wz=[];
@@ -537,7 +537,7 @@ for sn=1:num_of_subj
                     end
                 end
             end
-                %                     end
+            %                     end
             
             % Testing stage
             for run_test=1:length(idx_testdata)
@@ -564,7 +564,7 @@ for sn=1:num_of_subj
                                 template=template./(std(template')'*ones(1,length(template)));
                             end
                             
-                            % Generate the sine-cosine reference signal                            
+                            % Generate the sine-cosine reference signal
                             ref1=ref_target{j};
                             
                             % ================ eCCA ===============
@@ -591,7 +591,7 @@ for sn=1:num_of_subj
                                     % num_of_trials cannot be less than 2
                                     % in TRCA
                                     TRCAR(sub_band,j)=0;
-                                else                                                                        
+                                else
                                     cr1=corrcoef(subband_signal(sub_band).Wx_eTRCA'*test_signal,subband_signal(sub_band).Wx_eTRCA'*template);
                                     TRCAR(sub_band,j)=cr1(1,2);
                                 end
@@ -605,7 +605,7 @@ for sn=1:num_of_subj
                                     % in eTRCA
                                     MSTRCAR(sub_band,j)=0;
                                     MSCCATRCAR(sub_band,j)=0;
-                                else                                    
+                                else
                                     cr1=corrcoef(subband_signal(sub_band).Wx_mseTRCA'*test_signal,subband_signal(sub_band).Wx_mseTRCA'*template);
                                     MSTRCAR(sub_band,j)=cr1(1,2);
                                     
@@ -649,13 +649,13 @@ for sn=1:num_of_subj
                                 
                                 r1a=corrcoef((subband_signal(sub_band).Wx_source(:,j)'*test_signal)',(subband_signal(sub_band).Wy_source(:,j)'*ref1)');
                                 r1b=corrcoef((subband_signal(sub_band).Wx_transfer(:,j)'*test_signal)',(subband_signal(sub_band).templates_transfer(:,j))');
-                                [A1,B1,r]=canoncorr(test_signal'*subband_signal(sub_band).Wx_source(:,j),ref1');        
+                                [A1,B1,r]=canoncorr(test_signal'*subband_signal(sub_band).Wx_source(:,j),ref1');
                                 TLCCAR(sub_band,j)=sign(r1a(1,2))*r1a(1,2)^2+sign(r1b(1,2))*r1b(1,2)^2+sign(r(1))*r(1)^2;
                                 TLCCARR(sub_band,j)=sign(r1a(1,2))*r1a(1,2)^2+sign(r1b(1,2))*r1b(1,2)^2;
                             else
                                 TLCCAR(sub_band,j)=0;
                                 TLCCARR(sub_band,j)=0;
-                            end                           
+                            end
                             
                         end
                         
