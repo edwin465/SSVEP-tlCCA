@@ -13,7 +13,7 @@ The first assumption has been verified in many research studies, such as
 In ideal case, **the spatial filter is frequency-non-specific and subject-specific**.
 
 
-The second assumption comes from the superposition theory as mentioned in *Capilla, A., et al. (2011). Steady-state visual evoked potentials can be explained by temporal superposition of transient event-related responses. PloS one, 6(1), e14543.*. The `SSVEP template` can be decomposed into two components: impulse response and periodic impulse. In ideal case, **the impulse response includes the subject-specific knowledge (e.g., the shape, the latency, and etc) and frequency-non-specific. The periodic impulse is frequency-specific and subject-non-specific**.
+The second assumption comes from the superposition theory as mentioned in *Capilla, A., et al. (2011). Steady-state visual evoked potentials can be explained by temporal superposition of transient event-related responses. PloS one, 6(1), e14543.*. The `SSVEP template` can be decomposed into two components: impulse response and periodic impulse (more details can be found in https://github.com/edwin465/SSVEP-Impulse-Response). In ideal case, **the impulse response includes the subject-specific knowledge (e.g., the shape, the latency, and etc) and frequency-non-specific. The periodic impulse is frequency-specific and subject-non-specific**.
 
 In summary, the spatial filter and the impulse response are frequency-non-specific, which can be simply transferred across different frequencies. The idea of transferring the subject-specific knowledge across frequencies is, 
 
